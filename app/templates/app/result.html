@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Prediction Result</h1>
+        
+        <div class="mb-6 p-4 rounded-lg {% if result == 'Yes' %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %}">
+            <p class="text-xl font-semibold">Stroke Risk: <span class="text-2xl">{{ result }}</span></p>
+        </div>
+        
+        <p class="mb-6 text-gray-600">
+            {% if result == 'Yes' %}
+            Our analysis indicates a potential stroke risk. Please consult with a healthcare professional for further evaluation.
+            {% else %}
+            Our analysis indicates no significant stroke risk at this time. Maintain healthy habits for continued well-being.
+            {% endif %}
+        </p>
+        
+        <a href="{% url 'predict_stroke' %}" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition inline-block">
+            Back to Prediction
+        </a>
+    </div>
+</div>
+{% endblock %}
